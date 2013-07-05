@@ -1,0 +1,58 @@
+LIB_LOG4CPLUS		= -L/usr/local/lib  -llog4cxx
+
+
+INC_MYSQL 		= -I/usr/include/mysql
+
+MYSQL_LIB		= -L/usr/local/mysql/lib -lmysqlclient_r    -lpthread  
+#MYSQL_LIB		= lmysqlclient_r 
+
+#LIB_BOOST       =  -L/usr/local/lib -lboost_system -lboost_thread
+#LIB_BOOST       =  -L/usr/local/lib/libboost_system.a -lboost_thread  -lboost_serialization
+#LIB_BOOST_STATIC   = /usr/local/lib/libboost_serialization-gcc41-mt-1_37.a
+#LIB_BOOST_146   =  /usr/local/lib/libboost_serialization.a
+
+
+#LIB_MEMCACHED_CLIENT = /usr/local/lib/libmemcached.a
+LIB_MEMCACHED_CLIENT_SHARED = -L/usr/local/lib -lmemcached
+#LIB_LIBCURL = /usr/lib/libcurl.a
+LIB_LIBCURL = -L/usr/lib64  -lcurl
+LIB_REDIS   = /usr/local/lib/libhiredis.a
+#-L/usr/local/lib -lboost_system -lboost_thread
+OPENSSLPATH=/usr/include/openssl
+
+INCLUDE=-I${SERVER_ROOT}/src \
+	-I${SERVER_ROOT}/src/common \
+	-I${SERVER_ROOT}/src/main \
+	-I${SERVER_ROOT}/src/test \
+	-I${SERVER_ROOT}/src/service \
+	-I${SERVER_ROOT}/src/client \
+	-I/usr/include/openssl \
+    $(INC_MYSQL) \
+    -I/usr/local/libevent2.0.15/include  \
+	-I/usr/local/include \
+	-I/usr/local/zeromq-3.2.2/include \
+    
+    
+
+
+LIBS=  $(XL_LIB)   \
+      $(LIB_LIBCURL)   \
+      $(LIB_REDIS)     \
+      $(MYSQL_LIB)   \
+      $(LIB_LOG4CPLUS) \
+	-L/usr/local/mysql/lib/ \
+    $(LIB_BOOST_STATIC)  $(LIB_BOOST) \
+	-L/usr/local/lib  \
+    -lstdc++ -lrt  -lpthread  \
+    /usr/local/zeromq-3.2.2/lib/libzmq.a  \
+   
+    
+    
+    #/usr/local/lib/libiconv.a  \
+	
+CFLAGS = -ggdb -Wall -D_REENTRANT   -D_DEBUG -D__USE_EPOLL -D__LINUX__  -D_UNIX  -Wno-unused-function
+
+
+
+
+#/usr/local/lib/liblog4cplus.a \
